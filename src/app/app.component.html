@@ -1,3 +1,17 @@
 <h1>
   {{title}}
 </h1>
+
+<ul>
+  <li *ngFor="let character of characters">
+    {{character.name}}
+
+    <button [class.selected]="state.fuck === character.id" (click)="vote('fuck', character.id)">Fuck</button>
+    <button [class.selected]="state.marry === character.id" (click)="vote('marry', character.id)">Marry</button>
+    <button [class.selected]="state.kill === character.id" (click)="vote('kill', character.id)">Kill</button>
+  </li>
+</ul>
+
+<button (click)="submit()">Submit</button>
+<button (click)="next()">Next</button>
+
