@@ -1,3 +1,27 @@
-button.selected {
-  background: blue
+.characters,
+.buttons,
+.votes {
+  display: flex;
+}
+
+.character,
+.button,
+.vote {
+  flex: 1;
+}
+
+.button {
+  margin: 0 4px;
+}
+
+.button:first-child {
+  margin-left: 0;
+}
+
+.button:last-child {
+  margin-right: 0;
+}
+
+.button.selected {
+  background: #FF41B4;
 }
