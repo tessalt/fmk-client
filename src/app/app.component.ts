@@ -22,6 +22,7 @@ export class AppComponent {
     kill: null
   }
   characters: Character[];
+  voted: boolean = false;
 
   populateCharacters(): void {
     this.characterService.getCharacters().subscribe(characters => this.characters = characters);
@@ -32,12 +33,25 @@ export class AppComponent {
   }
 
   vote(value, character) {
-    Object.keys(this.state).forEach((key) => {
+    const newState = Object.keys(this.state).reduce((memo, key) => {
       if (this.state[key] === character) {
-        this.state[key] = null;
+        memo[key] = null
       }
+      return memo;
+    }, {});
+
+    this.state = Object.assign({}, this.state, newState, {
+      [value]: character
     });
-    this.state[value] = character;
+  }
+
+  reset(): void {
+    this.state = {
+      fuck: null,
+      marry: null,
+      kill: null
+    }
+    this.voted = false;
   }
 
   submit(): void {
@@ -48,11 +62,15 @@ export class AppComponent {
       } as Vote
     }).filter((vote) => vote.character_id);
     if (votes.length === 3) {
-      this.voteService.create(votes).subscribe(characters => this.characters = characters);
+      this.voteService.create(votes).subscribe((characters) => {
+        this.characters = characters;
+        this.voted = true;
+      });
     }
   }
 
   next(): void {
+    this.reset();
     this.populateCharacters();
   }
 }

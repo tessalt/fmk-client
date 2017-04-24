@@ -5,13 +5,19 @@
 <ul>
   <li *ngFor="let character of characters">
     {{character.name}}
+    <img width="300" src="http://localhost:3000/assets/{{character.photo}}" />
 
     <button [class.selected]="state.fuck === character.id" (click)="vote('fuck', character.id)">Fuck</button>
     <button [class.selected]="state.marry === character.id" (click)="vote('marry', character.id)">Marry</button>
     <button [class.selected]="state.kill === character.id" (click)="vote('kill', character.id)">Kill</button>
+
+    <div *ngIf="character.votes">
+      <div *ngFor="let vote of character.votes">
+        {{vote.name}}: {{vote.count}}
+      </div>
+    </div>
   </li>
 </ul>
 
-<button (click)="submit()">Submit</button>
-<button (click)="next()">Next</button>
-
+<button *ngIf="!voted" (click)="submit()">Submit</button>
+<button *ngIf="voted" (click)="next()">Next</button>
