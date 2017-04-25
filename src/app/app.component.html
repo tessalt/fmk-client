@@ -17,9 +17,24 @@
       <button class="button bg-gold navy bn pa2" [class.selected]="state.kill === character.id" (click)="vote('kill', character.id)">Kill</button>
     </div>
 
-    <div class="votes" *ngIf="character.votes">
-      <div class="vote pa3 b f3 tc" *ngFor="let vote of character.votes">
-        {{vote.count}}
+    <div *ngIf="character.votes">
+      <div class="votes">
+        <div class="vote pa3 b f3 tc" *ngFor="let vote of character.votes">
+          {{character.percentages[vote.value]}}%
+        </div>
+      </div>
+
+      <div class="pv1">
+        <p *ngIf="state.fuck === character.id">
+          You said: <strong>fuck</strong>
+        </p>
+        <p *ngIf="state.marry === character.id">
+          You said: <strong>marry</strong>
+        </p>
+        <p *ngIf="state.kill === character.id">
+          You said: <strong>kill</strong>
+        </p>
+        <p>Survey says: <strong>{{character.conclusion}}</strong></p>
       </div>
     </div>
   </div>

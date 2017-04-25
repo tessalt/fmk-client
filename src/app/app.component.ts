@@ -15,7 +15,7 @@ export class AppComponent {
     private characterService: CharacterService,
     private voteService: VoteService,
   ) {}
-  title = 'Fuck, Marry, Kill';
+  title = 'Fuck/Marry/Kill';
   state = {
     fuck: null,
     marry: null,
@@ -32,7 +32,7 @@ export class AppComponent {
     this.populateCharacters();
   }
 
-  vote(value, character) {
+  vote(value, character): void {
     const newState = Object.keys(this.state).reduce((memo, key) => {
       if (this.state[key] === character) {
         memo[key] = null
@@ -54,6 +54,29 @@ export class AppComponent {
     this.voted = false;
   }
 
+  // get survey() {
+  //   const winners = ['fuck', 'marry', 'kill'].reduce((memo, val) => {
+  //     const sorted = Array.prototype.slice.call(this.characters).sort((a, b) => {
+  //       if (a.percentages[val] > b.percentages[val]) {
+  //         return -1;
+  //       }
+  //       if (a.percentages[val] < b.percentages[val]) {
+  //         return 1;
+  //       }
+  //       return 0;
+  //     });
+  //     const highest = sorted[0];
+  //     if (!memo[highest.name]) {
+  //       memo[highest.name] = val;
+  //     } else {
+  //       memo[sorted[1].name] = val;
+  //     }
+
+  //     return memo;
+  //   }, {});
+  //   return winners;
+  // }
+
   submit(): void {
     const votes = Object.keys(this.state).map((key) => {
       return {
@@ -63,7 +86,7 @@ export class AppComponent {
     }).filter((vote) => vote.character_id);
     if (votes.length === 3) {
       this.voteService.create(votes).subscribe((characters) => {
-        this.characters = characters;
+        this.characters = characters.map(character => new Character(character));
         this.voted = true;
       });
     }
