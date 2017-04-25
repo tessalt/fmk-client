@@ -1,3 +1,4 @@
+import {environment} from '../environments/environment';
 import {Vote} from './vote';
 
 export class Character {
