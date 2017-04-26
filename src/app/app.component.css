@@ -1,26 +1,46 @@
-.characters,
-.buttons,
-.votes {
+.characters {
   display: flex;
 }
 
-.character,
-.button,
-.vote {
+.character {
   flex: 1;
 }
 
 .button {
-  margin: 0 4px;
+  width: 100%;
+  display: block;
+  margin: 4px 0;
 }
 
-.button:first-child {
-  margin-left: 0;
+@media screen and (min-width: 800px) {
+  .mobile-only {
+    display: none;
+  }
+
+  .buttons,
+  .votes {
+    display: flex;
+  }
+
+  .button,
+  .vote {
+    flex: 1;
+  }
+
+  .button {
+    width: auto;
+    margin: 0 4px;
+  }
+
+  .button:first-child {
+    margin-left: 0;
+  }
+
+  .button:last-child {
+    margin-right: 0;
+  }
 }
 
-.button:last-child {
-  margin-right: 0;
-}
 
 .button.selected {
   background: #FF41B4;

@@ -1,5 +1,8 @@
-<nav class="pa2 pa3-ns">
-  <h1 class="normal f6 f5-ns dib mr3"><a class="link dim light-gray" href="#">{{title}}</a></h1>
+<nav class="pa2 pa3-ns cf">
+  <div class="dt fl">
+    <img src="assets/images/logo.jpg" class="w2 h2 br-100 db dtc-ns v-mid-ns"  />
+    <h1 class="normal f6 f5-ns db dtc-ns v-mid ph2 pr0-ns pl3-ns"><a class="link dim light-gray" href="#">{{title}}</a></h1>
+  </div>
   <div class="fr">
     <button class="bg-dark-pink navy pv2 ph3 bn f6" *ngIf="!voted" (click)="submit()">Submit</button>
     <button class="bg-dark-pink navy pv2 ph3 bn f6" *ngIf="voted" (click)="next()">Next</button>
@@ -20,21 +23,9 @@
     <div *ngIf="character.votes">
       <div class="votes">
         <div class="vote pa3 b f3 tc" *ngFor="let vote of character.votes">
-          {{character.percentages[vote.value]}}%
+          <span class="mobile-only">{{vote.value}}:</span>
+          <span [class.hot-pink]="vote.value === character.conclusion">{{character.percentages[vote.value]}}%</span>
         </div>
-      </div>
-
-      <div class="pv1">
-        <p *ngIf="state.fuck === character.id">
-          You said: <strong>fuck</strong>
-        </p>
-        <p *ngIf="state.marry === character.id">
-          You said: <strong>marry</strong>
-        </p>
-        <p *ngIf="state.kill === character.id">
-          You said: <strong>kill</strong>
-        </p>
-        <p>Survey says: <strong>{{character.conclusion}}</strong></p>
       </div>
     </div>
   </div>
