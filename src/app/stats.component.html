@@ -1,0 +1,18 @@
+<div class="ph3">
+  <table class="f6 w-100 center" cellspacing="0">
+    <tr>
+      <th class="bg-hot-pink"></th>
+      <th class="bg-hot-pink"></th>
+      <th class="tl bg-hot-pink navy pv2 f4 cp" (click)="sort('fuck')">Fuck</th>
+      <th class="tl bg-hot-pink navy pv2 f4 cp" (click)="sort('marry')">Marry</th>
+      <th class="tl bg-hot-pink navy pv2 f4 cp" (click)="sort('kill')">Kill</th>
+    </tr>
+    <tr class="" *ngFor="let character of characters">
+      <td class="pt2 w4"><img class="w4" src="assets/images/{{character.photo}}"></td>
+      <td class="f4 pt2 pl3">{{character.name}}</td>
+      <td class="f4 pt2">{{character.percentages.fuck}}%</td>
+      <td class="f4 pt2">{{character.percentages.marry}}%</td>
+      <td class="f4 pt2">{{character.percentages.kill}}%</td>
+    </tr>
+  </table>
+</div>

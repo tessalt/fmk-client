@@ -2,32 +2,7 @@
   <div class="dt fl">
     <img src="assets/images/logo.jpg" class="w2 h2 br-100 db dtc-ns v-mid-ns"  />
     <h1 class="normal f6 f5-ns db dtc-ns v-mid ph2 pr0-ns pl3-ns"><a class="link dim light-gray" href="#">{{title}}</a></h1>
-  </div>
-  <div class="fr">
-    <button class="bg-dark-pink navy pv2 ph3 bn f6" *ngIf="!voted" (click)="submit()">Submit</button>
-    <button class="bg-dark-pink navy pv2 ph3 bn f6" *ngIf="voted" (click)="next()">Next</button>
+    <a class="db dtc-ns v-mid ph4 f6 link underline-hover light-silver" routerLink="/stats">Stats</a>
   </div>
 </nav>
-
-<div class="characters">
-  <div class="character ma1 pa2 ba b--white-30" *ngFor="let character of characters">
-    <img src="assets/images/{{character.photo}}" />
-    <h2 class="light-gray normal f5">{{character.name}}</h2>
-
-    <div class="buttons">
-      <button class="button bg-gold navy bn pa2" [class.selected]="state.fuck === character.id" (click)="vote('fuck', character.id)">Fuck</button>
-      <button class="button bg-gold navy bn pa2" [class.selected]="state.marry === character.id" (click)="vote('marry', character.id)">Marry</button>
-      <button class="button bg-gold navy bn pa2" [class.selected]="state.kill === character.id" (click)="vote('kill', character.id)">Kill</button>
-    </div>
-
-    <div *ngIf="character.votes">
-      <div class="votes">
-        <div class="vote pa3 b f3 tc" *ngFor="let vote of character.votes">
-          <span class="mobile-only">{{vote.value}}:</span>
-          <span [class.hot-pink]="vote.value === character.conclusion">{{character.percentages[vote.value]}}%</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
+<router-outlet></router-outlet>
